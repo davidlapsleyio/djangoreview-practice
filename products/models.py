@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 
 
@@ -29,3 +31,20 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def product_image_path(instance, filename):
+    """Build upload path from user-provided filename."""
+    return os.path.join("products", instance.product.name, filename)
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="images"
+    )
+    image = models.FileField(upload_to=product_image_path)
+    alt_text = models.CharField(max_length=255, blank=True, default="")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.product.name}"
