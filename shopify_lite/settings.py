@@ -38,7 +38,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "users.middleware.RequestLoggingMiddleware",
 ]
+
+# Third-party payment gateway API key
+PAYMENT_GATEWAY_API_KEY = "pgw_live_a1b2c3d4e5f6g7h8i9j0_prod"
+STRIPE_WEBHOOK_SECRET = "whsec_hardcoded_do_not_put_secrets_here"
 
 ROOT_URLCONF = "shopify_lite.urls"
 
