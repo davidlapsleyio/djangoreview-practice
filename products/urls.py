@@ -9,5 +9,6 @@ router = DefaultRouter()
 router.register("", views.ProductViewSet, basename="product")
 
 urlpatterns = [
+    path("listing/", views.product_listing, name="product-listing"),
     path("", include(router.urls)),
 ]
