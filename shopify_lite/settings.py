@@ -28,10 +28,13 @@ INSTALLED_APPS = [
     "orders",
     "users",
     "reviews",
+    "apiv2",
+    "payments",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "apiv2.middleware.APIVersionMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
