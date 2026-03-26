@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from products.serializers import ProductSerializer
+from users.models import User
 
 from .models import Order, OrderItem
 
@@ -46,3 +47,27 @@ class OrderCreateSerializer(serializers.Serializer):
             if item["quantity"] < 1:
                 raise serializers.ValidationError("Quantity must be at least 1.")
         return value
+
+
+class OrderUpdateSerializer(serializers.ModelSerializer):
+    """Serializer for updating orders — supports all fields."""
+
+    class Meta:
+        model = Order
+        fields = "__all__"
+
+
+class OrderItemUpdateSerializer(serializers.ModelSerializer):
+    """Writable serializer for order items."""
+
+    class Meta:
+        model = OrderItem
+        fields = "__all__"
+
+
+class UserOrderSerializer(serializers.ModelSerializer):
+    """User serializer used in order context for assignment."""
+
+    class Meta:
+        model = User
+        fields = "__all__"
