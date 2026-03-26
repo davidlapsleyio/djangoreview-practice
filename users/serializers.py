@@ -24,3 +24,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    """Full user detail serializer for profile and admin views."""
+
+    class Meta:
+        model = User
+        fields = [
+            "id", "username", "email", "password", "first_name", "last_name",
+            "address", "phone", "is_staff", "is_superuser", "is_active",
+            "last_login", "date_joined",
+        ]
